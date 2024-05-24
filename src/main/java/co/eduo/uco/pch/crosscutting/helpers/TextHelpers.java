@@ -8,13 +8,16 @@ public final class TextHelpers {
 	}
 	
 	public static final boolean isNull(final String string) {
-		return string == null;
+		return ObjectHelper.getObjectHelper().isNull(string);
 	}
 	
 	public static final boolean isNullOrEmpty(final String string)  {
 		return isNull(string) || EMPTY.equals(applyTrim(string));
 	}
 	
+	public static final String getDefaultValue(final String string, final String defaultValue ) {
+		return ObjectHelper().getObjectHelper(string, defaultValue);
+	}
 	public static final String getDefaultValue(final String string) {
 		return getDefaultValue(string, EMPTY);
 	}
