@@ -1,6 +1,7 @@
 package co.eduo.uco.pch.crosscutting.exception.menssageCatalog;
 
 import co.eduo.uco.pch.crosscutting.exception.messageCatalog.data.CodigoMensaje;
+import co.eduo.uco.pch.crosscutting.exception.messageCatalog.data.Mensaje;
 
 public interface MenssageCatalog {
 	
