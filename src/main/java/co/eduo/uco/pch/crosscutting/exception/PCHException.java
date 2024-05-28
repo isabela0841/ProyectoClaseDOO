@@ -6,27 +6,35 @@ import co.eduo.uco.pch.crosscutting.helpers.TextHelpers;
 
 public class PCHException extends RuntimeException {
 
+
 	private static final long serialVersionUID = 1L;
-    protected String mensajeUsuario;
-    protected LugarEnum lugar;
-    
+	
+	protected String mensajeUsuario;
+	protected LugarEnum lugar;
+	
 	public PCHException(String mensajeTecnico, String mensajeUsuario, LugarEnum lugar, Throwable excepcionRaiz) {
 		super(mensajeTecnico, excepcionRaiz);
 		setMensajeUsuario(mensajeUsuario);
 		setLugar(lugar);
 	}
 	
-	public PCHException(final String mensajeTecnico, final LugarEnum lugar) {
-		super(mensajeTecnico, new Exception());
+	public PCHException(final String mensajeUsuario,final LugarEnum lugar) {
+		super(mensajeUsuario);
+		setMensajeUsuario(mensajeUsuario);
+		setLugar(lugar);
+	}
+	
+	public PCHException(String mensajeTecnico, String mensajeUsuario, LugarEnum lugar) {
+		super(mensajeTecnico);
 		setMensajeUsuario(mensajeUsuario);
 		setLugar(lugar);
 	}
 
-	public final void setMensajeUsuario(final String mensajeUsuario) {
+	private final void setMensajeUsuario(final String mensajeUsuario) {
 		this.mensajeUsuario = TextHelpers.applyTrim(mensajeUsuario);
 	}
 
-	public final void setLugar(final LugarEnum lugar) {
+	private final void setLugar(final LugarEnum lugar) {
 		this.lugar = ObjectHelper.getObjectHelper().getDefaultValue(lugar, LugarEnum.DEFAULT);
 	}
 
@@ -40,4 +48,9 @@ public class PCHException extends RuntimeException {
 	
 	
 	
+	
+	
+	
+	
+
 }

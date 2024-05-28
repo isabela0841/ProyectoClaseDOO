@@ -5,9 +5,8 @@ import co.eduo.uco.pch.crosscutting.exception.messageCatalog.data.Mensaje;
 
 public interface MenssageCatalog {
 	
-	void inicializer();
+	void inicializar();
 	String obtenerContenidoMensaje(final CodigoMensaje codigo, String...parametros);
-	Mensaje obtenerMnesaje(final CodigoMensaje codigo, String...parametros);
-
-
+	Mensaje obtenerMensaje(final CodigoMensaje codigo, String...parametros);
+	
 }

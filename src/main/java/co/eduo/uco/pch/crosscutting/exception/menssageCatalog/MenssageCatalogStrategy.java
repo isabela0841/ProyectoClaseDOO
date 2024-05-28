@@ -1,12 +1,16 @@
 package co.eduo.uco.pch.crosscutting.exception.menssageCatalog;
 
-import co.eduo.uco.pch.crosscutting.exception.messageCatalog.data.CrosscuttingPCHException;
+import co.eduo.uco.pch.crosscutting.exception.custom.CrosscuttingPCHException;
+import co.eduo.uco.pch.crosscutting.exception.messageCatalog.data.CodigoMensaje;
+import co.eduo.uco.pch.crosscutting.exception.messageCatalog.data.Mensaje;
+import co.eduo.uco.pch.crosscutting.exception.menssageCatalog.impl.MessageCatalogBase;
+import co.eduo.uco.pch.crosscutting.exception.menssageCatalog.impl.MessageCatalogExternalService;
+import co.eduo.uco.pch.crosscutting.helpers.ObjectHelper;
 
-
-public class MenssageCatalogStrategy {
+public final class MenssageCatalogStrategy {
 	
-	private static final MenssageCatalog base= new MenssageCatalogBase();
-	private static final MenssageCatalog externalService= new MenssageCatalogExternalService();
+	private static final MenssageCatalog base = new MessageCatalogBase();
+	private static final MenssageCatalog externalService = new MessageCatalogExternalService();
 	
 	static {
 		inicializar();
@@ -15,9 +19,10 @@ public class MenssageCatalogStrategy {
 	private MenssageCatalogStrategy() {
 		super();
 	}
+	
 	public static void inicializar() {
-		base.inicializer();
-		externalService.inicializer();
+		base.inicializar();
+		externalService.inicializar();
 	}
 	
 	private static final MenssageCatalog getStrategy(final boolean esBase) {
@@ -28,21 +33,19 @@ public class MenssageCatalogStrategy {
 		
 		if(ObjectHelper.getObjectHelper().isNull(codigo)) {
 			var mensajeUsuario=MenssageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00002);
-			var mensajeTecnico=MenssageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00001);
+			var mensajeTecnico = MenssageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00001);
 			throw new CrosscuttingPCHException(mensajeTecnico, mensajeUsuario);
-			
 		}
+		
 		return getStrategy(codigo.esBase()).obtenerMensaje(codigo, parametros);
 	}
 	
-	public static final String getContenidoMensaje(final CodigoMensaje codigo, final String...parametros) {
+	public static final String  getContenidoMensaje(final CodigoMensaje codigo, final String...parametros) {
 		return getMensaje(codigo, parametros).getContenido();
 	}
+	
 	public static void main(String[] args) {
-		System.out.printIn(getContenidoMensaje(CodigoMensaje.M00007));
+		System.out.println(getContenidoMensaje(CodigoMensaje.M00007));
 	}
-
-}
-
 
 }
